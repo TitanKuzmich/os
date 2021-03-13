@@ -11,6 +11,22 @@ export const algoProcess = (btn, haveUploadData = false) => {
         tactWrappers = document.querySelectorAll(".tact-wrapper"),
         inputDataTable = document.querySelector(".input-data-table");
 
+    let inputToValidate = document.querySelector(".generate-area");
+
+    let isValidField = false;
+
+    inputToValidate.addEventListener("input", function () {
+        let val = this.value.replace(/^0|\D/g, '');
+        this.value = val;
+
+        if(this.value.length >= 1){
+            isValidField = true;
+        }
+        else{
+            isValidField = false;
+        }
+    })
+
     const clearTable = (wrappers) => {                              //очистка таблиц
         if(wrappers) {
             wrappers.forEach(wrapper => {
@@ -22,24 +38,28 @@ export const algoProcess = (btn, haveUploadData = false) => {
     }
 
     btn.addEventListener("click", async () => {                             //функция асинхронная, т.к. внутри есть асинхронный код
-        clearTable(taskWrappers);                                           //очищаем таблицы
-        clearTable(tactWrappers);
+        if(isValidField){
+            clearTable(taskWrappers);                                           //очищаем таблицы
+            clearTable(tactWrappers);
 
-        let data = [];
+            let data = [];
 
-        haveUploadData ? data = await loadFileProcess() : data = await generate(20);      //инициализируем исходные данные
+            haveUploadData ? data = await loadFileProcess() : data = await generate(20);      //инициализируем исходные данные
 
-        paintInputData(data, inputDataTable)
-        //расчет, отрисовка для FIFO
-        let fifoData = processArray(fifo(data));
-        paintNums(fifoData, fifoWrapper.querySelector(".tact-wrapper"));
-        paintString(fifoData, fifoWrapper.querySelector(".task-wrapper"));
-        calcStats(fifoData, fifoWrapper.querySelector(".stats"));
+            console.log(data);
 
-        //расчет, отрисовка для STRF
-        let strfData = processArray(strf(data));
-        paintNums(strfData, strfWrapper.querySelector(".tact-wrapper"));
-        paintString(strfData, strfWrapper.querySelector(".task-wrapper"));
-        calcStats(strfData, strfWrapper.querySelector(".stats"));
+            paintInputData(data, inputDataTable)
+            //расчет, отрисовка для FIFO
+            let fifoData = processArray(fifo(data));
+            paintNums(fifoData, fifoWrapper.querySelector(".tact-wrapper"));
+            paintString(fifoData, fifoWrapper.querySelector(".task-wrapper"));
+            calcStats(fifoData, fifoWrapper.querySelector(".stats"));
+
+            //расчет, отрисовка для STRF
+            let strfData = processArray(strf(data));
+            paintNums(strfData, strfWrapper.querySelector(".tact-wrapper"));
+            paintString(strfData, strfWrapper.querySelector(".task-wrapper"));
+            calcStats(strfData, strfWrapper.querySelector(".stats"));
+        }
     })
 }

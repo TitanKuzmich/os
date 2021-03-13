@@ -10386,15 +10386,9 @@ var paintInputData = function paintInputData(inpData, attachToEl) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_algoProcess__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/algoProcess */ "./src/js/modules/algoProcess.js");
-/* harmony import */ var _modules_loadFileProcess__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/loadFileProcess */ "./src/js/modules/loadFileProcess.js");
-/* harmony import */ var _helper_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helper/helpers */ "./src/js/helper/helpers.js");
-
-
+/* harmony import */ var _modules_algoProcess__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/algoProcess */ "./src/js/modules/algoProcess.js");
+/* harmony import */ var _modules_loadFileProcess__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/loadFileProcess */ "./src/js/modules/loadFileProcess.js");
+/* harmony import */ var _helper_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper/helpers */ "./src/js/helper/helpers.js");
 
 
 
@@ -10403,23 +10397,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
   var generateBtn = document.querySelector(".btn-generate"),
       uploadBtn = document.querySelector(".btn-upload");
-  var inputToValidate = document.querySelector(".generate-area");
-  var isValidField = false;
-  inputToValidate.addEventListener("input", function () {
-    var val = this.value.replace(/^0|\D/g, '');
-    this.value = val;
-    console.log(this.value.length);
+  Object(_modules_loadFileProcess__WEBPACK_IMPORTED_MODULE_1__["loadToInput"])();
+  Object(_modules_algoProcess__WEBPACK_IMPORTED_MODULE_0__["algoProcess"])(generateBtn, false); //запускаем моделирование для данных, сгенерированных на клиенте
 
-    if (this.value.length >= 1) {
-      isValidField = true;
-    } else {
-      isValidField = false;
-    }
-
-    if (isValidField) Object(_modules_algoProcess__WEBPACK_IMPORTED_MODULE_2__["algoProcess"])(generateBtn); //запускаем моделирование для данных, сгенерированных на клиенте
-  });
-  Object(_modules_loadFileProcess__WEBPACK_IMPORTED_MODULE_3__["loadToInput"])();
-  Object(_modules_algoProcess__WEBPACK_IMPORTED_MODULE_2__["algoProcess"])(uploadBtn, true); //запускаем моделирование для данных, загруженных из файла
+  Object(_modules_algoProcess__WEBPACK_IMPORTED_MODULE_0__["algoProcess"])(uploadBtn, true); //запускаем моделирование для данных, загруженных из файла
 });
 
 /***/ }),
@@ -10436,23 +10417,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "algoProcess", function() { return algoProcess; });
 /* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regenerator-runtime/runtime.js */ "./node_modules/regenerator-runtime/runtime.js");
 /* harmony import */ var regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
-/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _algorithms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./algorithms */ "./src/js/modules/algorithms.js");
-/* harmony import */ var _helper_helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helper/helpers */ "./src/js/helper/helpers.js");
-/* harmony import */ var _loadFileProcess__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./loadFileProcess */ "./src/js/modules/loadFileProcess.js");
-/* harmony import */ var _calcStats__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./calcStats */ "./src/js/modules/calcStats.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _algorithms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./algorithms */ "./src/js/modules/algorithms.js");
+/* harmony import */ var _helper_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helper/helpers */ "./src/js/helper/helpers.js");
+/* harmony import */ var _loadFileProcess__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./loadFileProcess */ "./src/js/modules/loadFileProcess.js");
+/* harmony import */ var _calcStats__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./calcStats */ "./src/js/modules/calcStats.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -10469,6 +10456,18 @@ var algoProcess = function algoProcess(btn) {
       taskWrappers = document.querySelectorAll(".task-wrapper"),
       tactWrappers = document.querySelectorAll(".tact-wrapper"),
       inputDataTable = document.querySelector(".input-data-table");
+  var inputToValidate = document.querySelector(".generate-area");
+  var isValidField = false;
+  inputToValidate.addEventListener("input", function () {
+    var val = this.value.replace(/^0|\D/g, '');
+    this.value = val;
+
+    if (this.value.length >= 1) {
+      isValidField = true;
+    } else {
+      isValidField = false;
+    }
+  });
 
   var clearTable = function clearTable(wrappers) {
     //очистка таблиц
@@ -10487,47 +10486,52 @@ var algoProcess = function algoProcess(btn) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            //функция асинхронная, т.к. внутри есть асинхронный код
+            if (!isValidField) {
+              _context.next = 23;
+              break;
+            }
+
             clearTable(taskWrappers); //очищаем таблицы
 
             clearTable(tactWrappers);
             data = [];
 
             if (!haveUploadData) {
-              _context.next = 9;
+              _context.next = 10;
               break;
             }
 
-            _context.next = 6;
-            return Object(_loadFileProcess__WEBPACK_IMPORTED_MODULE_7__["loadFileProcess"])();
+            _context.next = 7;
+            return Object(_loadFileProcess__WEBPACK_IMPORTED_MODULE_9__["loadFileProcess"])();
 
-          case 6:
+          case 7:
             data = _context.sent;
-            _context.next = 12;
+            _context.next = 13;
             break;
 
-          case 9:
-            _context.next = 11;
-            return Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["generate"])(20);
-
-          case 11:
-            data = _context.sent;
+          case 10:
+            _context.next = 12;
+            return Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["generate"])(20);
 
           case 12:
+            data = _context.sent;
+
+          case 13:
             //инициализируем исходные данные
-            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["paintInputData"])(data, inputDataTable); //расчет, отрисовка для FIFO
+            console.log(data);
+            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["paintInputData"])(data, inputDataTable); //расчет, отрисовка для FIFO
 
-            fifoData = Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["processArray"])(Object(_algorithms__WEBPACK_IMPORTED_MODULE_5__["fifo"])(data));
-            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["paintNums"])(fifoData, fifoWrapper.querySelector(".tact-wrapper"));
-            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["paintString"])(fifoData, fifoWrapper.querySelector(".task-wrapper"));
-            Object(_calcStats__WEBPACK_IMPORTED_MODULE_8__["calcStats"])(fifoData, fifoWrapper.querySelector(".stats")); //расчет, отрисовка для STRF
+            fifoData = Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["processArray"])(Object(_algorithms__WEBPACK_IMPORTED_MODULE_7__["fifo"])(data));
+            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["paintNums"])(fifoData, fifoWrapper.querySelector(".tact-wrapper"));
+            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["paintString"])(fifoData, fifoWrapper.querySelector(".task-wrapper"));
+            Object(_calcStats__WEBPACK_IMPORTED_MODULE_10__["calcStats"])(fifoData, fifoWrapper.querySelector(".stats")); //расчет, отрисовка для STRF
 
-            strfData = Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["processArray"])(Object(_algorithms__WEBPACK_IMPORTED_MODULE_5__["strf"])(data));
-            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["paintNums"])(strfData, strfWrapper.querySelector(".tact-wrapper"));
-            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_6__["paintString"])(strfData, strfWrapper.querySelector(".task-wrapper"));
-            Object(_calcStats__WEBPACK_IMPORTED_MODULE_8__["calcStats"])(strfData, strfWrapper.querySelector(".stats"));
+            strfData = Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["processArray"])(Object(_algorithms__WEBPACK_IMPORTED_MODULE_7__["strf"])(data));
+            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["paintNums"])(strfData, strfWrapper.querySelector(".tact-wrapper"));
+            Object(_helper_helpers__WEBPACK_IMPORTED_MODULE_8__["paintString"])(strfData, strfWrapper.querySelector(".task-wrapper"));
+            Object(_calcStats__WEBPACK_IMPORTED_MODULE_10__["calcStats"])(strfData, strfWrapper.querySelector(".stats"));
 
-          case 21:
+          case 23:
           case "end":
             return _context.stop();
         }
