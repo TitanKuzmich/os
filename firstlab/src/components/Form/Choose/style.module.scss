@@ -1,0 +1,11 @@
+.optionWrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .titleModal{
+    font-size: 20px;
+    min-width: 60%;
+  }
+}
