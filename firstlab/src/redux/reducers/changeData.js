@@ -2,12 +2,18 @@ import {dataManip} from "../actions/changeData";
 
 const initialState = {
   data:{},
+  withTrace:false,
   fifoData:[],
   strfData:[]
 }
 
 const changeData = (state = initialState, action) => {
   switch (action.type) {
+    case dataManip.CHANGE_WITH_TRACE:
+      return {
+        ...state,
+        withTrace: action.payload
+      }
     case dataManip.CHANGE_MAIN_DATA:
       return {
         ...state,

@@ -29,7 +29,7 @@ export const generate = async (tasksNum) => {
     }))
 }
 
-export const processArray = (data) => {
+export const processArray = (data, withTrace = true) => {
     let resultArr = [],
         resultItem = [],
         lastWorkTime = 0;
@@ -79,14 +79,16 @@ export const processArray = (data) => {
 
     resultArr.sort((a, b) => a[0] - b[0]);
 
-    for(let i = 0; i < resultArr.length-1; i++){
-        if(resultArr[i][0] === resultArr[i+1][0]){
-            for(let j = 1; j < resultArr[i].length; j++){
-                if(resultArr[i][j] > resultArr[i+1][j])
-                    resultArr[i+1][j] = resultArr[i][j]
+    if(withTrace){
+        for(let i = 0; i < resultArr.length-1; i++){
+            if(resultArr[i][0] === resultArr[i+1][0]){
+                for(let j = 1; j < resultArr[i].length; j++){
+                    if(resultArr[i][j] > resultArr[i+1][j])
+                        resultArr[i+1][j] = resultArr[i][j]
+                }
+                resultArr.splice(i, 1)
+                i-=1
             }
-            resultArr.splice(i, 1)
-            i-=1
         }
     }
 

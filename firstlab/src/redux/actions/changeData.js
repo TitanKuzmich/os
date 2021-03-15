@@ -3,10 +3,16 @@ import {processArray} from "../../utils/helper";
 import {fifo, strf} from "../../utils/algorithms";
 
 export const dataManip = {
+  CHANGE_WITH_TRACE: "CHANGE_WITH_TRACE",
   CHANGE_MAIN_DATA: "CHANGE_MAIN_DATA",
   CHANGE_FIFO_DATA: "CHANGE_FIFO_DATA",
   CHANGE_STRF_DATA: "CHANGE_STRF_DATA"
 }
+
+export const changeWithTrace = (withTrace) => ({
+  type: dataManip.CHANGE_WITH_TRACE,
+  payload: withTrace,
+})
 
 const changeMainData = (data) => ({
   type: dataManip.CHANGE_MAIN_DATA,
@@ -37,13 +43,13 @@ const changeStrfData = (data) => ({
   payload: data,
 })
 
-export const algoProcess = data => {
+export const algoProcess = (data, withTrace) => {
   return async (dispatch) => {
     try {
-      let fifoData = processArray(fifo(data));
+      let fifoData = processArray(fifo(data), withTrace);
       dispatch(changeFifoData(fifoData));
 
-      let strfData = processArray(strf(data));
+      let strfData = processArray(strf(data), withTrace);
       dispatch(changeStrfData(strfData));
     } catch (error) {
 

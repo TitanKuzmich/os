@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import Subsection from "../../SubSection";
 import Input from "../Input";
-import Switch from "../Switch";
 import Button from "../../Button";
 
 import style from "./style.module.scss";
@@ -15,13 +14,15 @@ const Generate = () => {
 
     const dispatch = useDispatch();
 
-    const [data, setData] = useState({name: "", procNums: "", traceEnabled: false});
+    const withTrace = useSelector(({changeData})=> changeData.withTrace);
+
+    const [data, setData] = useState({name: "", procNums: ""});
     const [isValid, setValid] = useState(false);
 
     const onGenerate = async () => {
         let rawData = await generate(data.procNums);
         dispatch(addMainData(rawData));
-        dispatch(algoProcess(rawData));
+        dispatch(algoProcess(rawData, withTrace));
     }
 
     useEffect(() => {
@@ -64,19 +65,6 @@ const Generate = () => {
                                    })
                                }
                                pattern="[^0][0-9]+$|^[1-9]+$"/>
-                    </div>
-                </div>
-
-                <div className={style.optionWrapper}>
-                    <div className={style.titleModal}>Печать с трассировкой:</div>
-                    <div className={style.inputModal}>
-                        <Switch checked={data.traceEnabled}
-                                onChange={() => {
-                                    setData({
-                                        ...data,
-                                        traceEnabled: !data.traceEnabled
-                                    })
-                                }}/>
                     </div>
                 </div>
 

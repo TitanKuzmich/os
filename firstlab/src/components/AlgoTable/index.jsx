@@ -7,7 +7,7 @@ const AlgoTable = ({name, dataToRender}) => {
 
     const cellValue = (index, value) => {
         if(index === 0){
-            return `P${index}`
+            return `P${value}`
         } else {
             switch (value){
                 case 1:

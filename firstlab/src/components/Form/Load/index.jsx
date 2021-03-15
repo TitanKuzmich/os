@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addMainData, algoProcess} from "../../../redux/actions/changeData";
 
 import Subsection from "../../SubSection";
@@ -8,6 +8,9 @@ import Button from "../../Button";
 import style from "./style.module.scss";
 
 const Load = () => {
+
+    const withTrace = useSelector(({changeData})=> changeData.withTrace);
+
     const [data, setData] = useState([]);
     const [name, setFileName] = useState("");
 
@@ -17,7 +20,7 @@ const Load = () => {
 
     const onUpload = () => {
         dispatch(addMainData(data));
-        dispatch(algoProcess(data));
+        dispatch(algoProcess(data, withTrace));
     }
 
     useEffect(() => {

@@ -8,7 +8,6 @@ const SourceTable = () => {
 
     const paintSourceTable = () => {
         const source = Object.values(sourceData);
-        source[source.length - 1].sort((a, b) => a["id"] - b["id"]);
 
         setDataForTable(source[source.length - 1]);
     }
@@ -31,7 +30,7 @@ const SourceTable = () => {
                 </div>
             </div>
             <div className="input-data-cell-wrapper">
-                {dataForTable.length > 0 && dataForTable.map((data, index)=>(
+                {dataForTable.length > 0 && dataForTable.sort((a, b) => a["id"] - b["id"]).map((data, index)=>(
                     <div className="input-data-string" key={`${data}_${index}`}>
                         <div className="input-data-block">{data["id"]}</div>
                         <div className="input-data-block">{data["readyTime"]}</div>
