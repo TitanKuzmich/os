@@ -53,7 +53,10 @@ const Generate = () => {
                 </div>
 
                 <div className={style.optionWrapper}>
-                    <div className={style.titleModal}>Введите количесвто процессов:</div>
+                    <div className={style.titleModal}>
+                        Введите количесвто процессов:
+                        <div className="tooltip">(если процессов >200, печать таблиц отключается)</div>
+                    </div>
                     <div className={style.inputModal}>
                         <Input placeholder="20"
                                disabled={false}

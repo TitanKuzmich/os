@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classNames from "classnames";
 import {calcStats} from "../../utils/helper";
 
@@ -20,12 +20,19 @@ const AlgoTable = ({name, dataToRender}) => {
         }
     }
 
+    useEffect(() => {
+        if (dataToRender.length > 200){
+            console.log(name);
+            console.log(dataToRender);
+        }
+    }, [dataToRender])
+
     return (
         <div className="algo-wrapper">
             <div className="table-title">{name}</div>
             <div className="table-wrapper">
                 <div className="tact-wrapper">
-                    {dataToRender && dataToRender.length > 0 ?
+                    {(dataToRender && dataToRender.length > 0 && dataToRender.length <= 200) ?
                         Array.from(Array(dataToRender[0].length - 1).keys()).map((value, index) => (
                             <div className="item" key={`${index}_${value}`}>{value}</div>
                         ))
@@ -36,7 +43,7 @@ const AlgoTable = ({name, dataToRender}) => {
                     }
                 </div>
                 <div className="task-wrapper">
-                    {dataToRender && dataToRender.length > 0 ?
+                    {(dataToRender && dataToRender.length > 0 && dataToRender.length <= 200) ?
                         dataToRender.map((dataString, index)=>(
                             <div className="task-string" key={`${index}_${dataString}`}>
                                 {dataString.map((value, index) => (

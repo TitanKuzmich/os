@@ -14,6 +14,11 @@ const SourceTable = () => {
 
     useUpdateEffect(()=>{
         paintSourceTable();
+
+        if(dataForTable.length > 200){
+            console.log("Source data");
+            console.log(sourceData);
+        }
     }, [sourceData])
 
     return (
@@ -30,7 +35,7 @@ const SourceTable = () => {
                 </div>
             </div>
             <div className="input-data-cell-wrapper">
-                {dataForTable.length > 0 && dataForTable.sort((a, b) => a["id"] - b["id"]).map((data, index)=>(
+                {dataForTable.length > 0 && dataForTable.length <= 200 && dataForTable.sort((a, b) => a["id"] - b["id"]).map((data, index)=>(
                     <div className="input-data-string" key={`${data}_${index}`}>
                         <div className="input-data-block">{data["id"]}</div>
                         <div className="input-data-block">{data["readyTime"]}</div>
